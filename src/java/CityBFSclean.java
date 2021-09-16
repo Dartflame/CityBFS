@@ -46,12 +46,13 @@ public class CityBFSclean {
 
     public static void route(int city) {
         for (int i = city - 1; i < coords.size() - 1; i++) {
+
             int startX = Integer.parseInt(coords.get(city - 1).split(" ")[0]);
-            ;
             int startY = Integer.parseInt(coords.get(city - 1).split(" ")[1]);
-            ;
+
             int x = Integer.parseInt(coords.get(i + 1).split(" ")[0]);
             int y = Integer.parseInt(coords.get(i + 1).split(" ")[1]);
+
             if (Math.abs(x - startX) + Math.abs(y - startY) <= gasoline && i + 2 != city) {
                 map.get(city).add(i + 2);
                 map.get(i + 2).add(city);
