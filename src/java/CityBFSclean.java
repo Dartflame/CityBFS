@@ -14,7 +14,7 @@ public class CityBFSclean {
     static ArrayList<String> coords = new ArrayList<>();
     static LinkedList queue;
     static int[] steps;
-    static boolean[] array;
+    static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
 
@@ -33,12 +33,10 @@ public class CityBFSclean {
         for (Map.Entry entry : map.entrySet())
             route((int) entry.getKey());
 
-        array = new boolean[n];
+        visited = new boolean[n];
         steps = new int[n];
         queue = new LinkedList<Integer>();
-        for (int i = 0; i < array.length; i++) {
-            array[i] = false;
-        }
+
         int result = findWay();
         if(result == -1)
             System.out.println(result);
@@ -67,14 +65,14 @@ public class CityBFSclean {
         boolean found = false;
 
         for (int i = start; i <= map.size(); ) {
-            array[i - 1] = true;
+            visited[i - 1] = true;
             for (int j = 0; j < map.get(i).size(); j++) {
                 pick = map.get(i).get(j);
 
                 if (pick == finish)
                     found = true;
 
-                if (!queue.contains(pick) && !array[pick - 1]) {
+                if (!queue.contains(pick) && !visited[pick - 1]) {
                     steps[pick-1] = steps[i-1] + 1;
                     queue.add(pick);
                 }
